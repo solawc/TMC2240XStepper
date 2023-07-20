@@ -70,7 +70,8 @@ namespace TMC2240_n {
     union {
       uint32_t sr;
       struct {
-        uint8_t tpwmthrsb : 20;
+        // uint8_t tpwmthrsb : 20;
+        uint8_t tpwmthrsb;
       };
     };
   };
@@ -79,7 +80,8 @@ namespace TMC2240_n {
     union {
       uint32_t sr;
       struct {
-        uint8_t tcoolthrs : 20;
+        // uint8_t tcoolthrs : 20;
+        uint8_t tcoolthrs;
       };
     };
   };

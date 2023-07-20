@@ -1,8 +1,5 @@
-#pragma once
-
-
 #include "source/TMC_MACROS.h"
-#include "TMCStepper.h"
+#include "TMC2240XStepper.h"
 
 // #define GET_REG(SETTING) return IHOLD_IRUN_register.SETTING;
 #define GET_REG(SETTING) TMC2240_n::IHOLD_IRUN_t r{0}; r.sr = IHOLD_IRUN(); return r.SETTING

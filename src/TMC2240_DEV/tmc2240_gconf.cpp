@@ -1,8 +1,5 @@
-#pragma once
-
-
 #include "source/TMC_MACROS.h"
-#include "TMCStepper.h"
+#include "TMC2240XStepper.h"
 
 // #define GET_REG(SETTING) return GCONF_register.SETTING;
 #define GET_REG(SETTING) TMC2240_n::GCONF_t r{0}; r.sr = GCONF(); return r.SETTING
@@ -15,11 +12,8 @@ void TMC2240Stepper::GCONF(uint32_t data) {
   write(GCONF_register.address, GCONF_register.sr);
 }
 
-
 void TMC2240Stepper::diag1_stall(uint8_t B) 	{ SET_REG(diag1_stall); 	}
 // void TMC2240Stepper::slo_control(uint8_t B) 	{ SET_REG(slo_control);	}
-
-
 
 uint8_t TMC2240Stepper::diag1_stall() 	{ GET_REG(diag1_stall); 	}
 

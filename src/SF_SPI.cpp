@@ -1,12 +1,12 @@
-#include "SW_SPI.h"
+#include "SF_SPI.h"
 
-SW_SPIClass::SW_SPIClass(uint16_t mosi, uint16_t miso, uint16_t sck) :
+SF_SPIClass::SF_SPIClass(uint16_t mosi, uint16_t miso, uint16_t sck) :
   mosi_pin(mosi),
   miso_pin(miso),
   sck_pin(sck)
   {}
 
-void SW_SPIClass::init() {
+void SF_SPIClass::init() {
   pinMode(mosi_pin, OUTPUT);
   pinMode(sck_pin, OUTPUT);
   pinMode(miso_pin, INPUT_PULLUP);
@@ -21,7 +21,7 @@ void SW_SPIClass::init() {
   writeSCK_H;
 }
 
-uint8_t SW_SPIClass::transfer(uint8_t ulVal) {
+uint8_t SF_SPIClass::transfer(uint8_t ulVal) {
   uint8_t value = 0;
   writeSCK_L;
 
@@ -43,7 +43,7 @@ uint8_t SW_SPIClass::transfer(uint8_t ulVal) {
   return value;
 }
 
-uint16_t SW_SPIClass::transfer16(uint16_t data) {
+uint16_t SF_SPIClass::transfer16(uint16_t data) {
   uint16_t returnVal = 0x0000;
   returnVal |= transfer((data>>8)&0xFF) << 8;
   returnVal |= transfer(data&0xFF) & 0xFF;

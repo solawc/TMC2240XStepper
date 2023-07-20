@@ -1,5 +1,6 @@
-#include "TMCStepper.h"
-#include "SW_SPI.h"
+// #include "TMCStepper.h"
+#include "TMC2240XStepper.h"
+#include "SF_SPI.h"
 
 TMC2240Stepper::TMC2240Stepper(uint16_t pinCS, float RS) :
   _pinCS(pinCS),
@@ -10,7 +11,7 @@ TMC2240Stepper::TMC2240Stepper(uint16_t pinCS, uint16_t pinMOSI, uint16_t pinMIS
   _pinCS(pinCS),
   Rsense(default_RS)
   {
-    SW_SPIClass *SW_SPI_Obj = new SW_SPIClass(pinMOSI, pinMISO, pinSCK);
+    SF_SPIClass *SW_SPI_Obj = new SF_SPIClass(pinMOSI, pinMISO, pinSCK);
     TMC_SW_SPI = SW_SPI_Obj;
   }
 
@@ -18,7 +19,7 @@ TMC2240Stepper::TMC2240Stepper(uint16_t pinCS, float RS, uint16_t pinMOSI, uint1
   _pinCS(pinCS),
   Rsense(RS)
   {
-    SW_SPIClass *SW_SPI_Obj = new SW_SPIClass(pinMOSI, pinMISO, pinSCK);
+    SF_SPIClass *SW_SPI_Obj = new SF_SPIClass(pinMOSI, pinMISO, pinSCK);
     TMC_SW_SPI = SW_SPI_Obj;
   }
 
@@ -137,25 +138,13 @@ uint16_t TMC2240Stepper::rms_current() {
 }
 void TMC2240Stepper::rms_current(uint16_t mA) {
 
-    // uint16_t cur_ma = 0;
-    // uint16_t set_cur = 0;
-    // uint32_t set_data = 0;
-    // cur_ma = mA;
-
-    // set_cur = (mA*32/3000);
-
-    // set_data = 0x00060005;
-
-    // set_data = set_data | (set_cur << 8);
-
-    // IHOLD_IRUN(set_data);
     float rel_ma = mA * 1.414;
     uint16_t cur_ma = 0;
     uint16_t set_cur = 0;
     uint32_t set_data = 0;
     cur_ma = mA;
 
-    set_cur = (rel_ma*32/3000);
+    set_cur = (rel_ma * 32 / 3000);
 
     set_data = 0x00060005;
 

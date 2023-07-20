@@ -1,8 +1,5 @@
-#pragma once
-
-
 #include "source/TMC_MACROS.h"
-#include "TMCStepper.h"
+#include "TMC2240XStepper.h"
 
 #define GET_REG(SETTING) TMC2240_n::CHOPCONF_t r{0}; r.sr = CHOPCONF(); return r.SETTING
 

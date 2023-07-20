@@ -1,8 +1,5 @@
-#pragma once
-
-
 #include "source/TMC_MACROS.h"
-#include "TMCStepper.h"
+#include "TMC2240XStepper.h"
 
 // #define GET_REG(SETTING) return SG4_THRS_register.SETTING;
 #define GET_REG(SETTING) TMC2240_n::SG4_THRS_t r{0}; r.sr = SG4_THRS(); return r.SETTING

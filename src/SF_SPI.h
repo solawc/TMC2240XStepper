@@ -12,11 +12,11 @@
 	#endif
 #endif
 
-#include "TMC_platforms.h"
+#include "TMC2240X_platforms.h"
 
-class SW_SPIClass {
+class SF_SPIClass {
 	public:
-		SW_SPIClass(uint16_t sw_mosi_pin, uint16_t sw_miso_pin, uint16_t sw_sck_pin);
+		SF_SPIClass(uint16_t sw_mosi_pin, uint16_t sw_miso_pin, uint16_t sw_sck_pin);
 		void init();
 		void begin() {};
 		uint8_t transfer(uint8_t ulVal);
